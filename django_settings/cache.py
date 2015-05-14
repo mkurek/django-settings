@@ -8,6 +8,10 @@ a set of tools that makes method caching a little more flexible that simple
 
 XXX: the whole mechanism should be fixed as now it's too complicated to explain
 """
+from __future__ import unicode_literals
+
+import six
+
 from .lazyimport import lazyimport
 
 django = lazyimport({
@@ -23,7 +27,8 @@ class KeyMaker(object):
         self.prefix = prefix
 
     def convert(self, arg):
-        if isinstance(arg, unicode):
+        return str(arg)
+        if isinstance(arg, six.string_types):
             return arg.encode(django.settings.DEFAULT_CHARSET)
         else:
             return str(arg)

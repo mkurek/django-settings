@@ -34,6 +34,8 @@ Usage::
 import sys
 import types
 
+import six
+
 
 def subclass(class_=None, module=None):
     attrs = {
@@ -79,10 +81,10 @@ class ModuleRegistry(object):
         return "<%s object %s>" % (self.__class__.__name__, self.elements)
 
     def __unicode__(self):
-        return unicode(str(self))
+        return six.text_type(str(self))
 
     def __repr__(self):
-        return unicode(self)
+        return six.text_type(self)
 
     def __contains__(self, model_class_name):
         return model_class_name in self.elements

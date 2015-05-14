@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 # module
+import six
+
 from .cache import cache_method, MethodProxy
 from .lazyimport import lazyimport
 from . import conf
@@ -54,8 +56,8 @@ class DataAPIMetaclass(type):
         return new
 
 
-class DataAPI(object):
-    __metaclass__ = DataAPIMetaclass
+class DataAPI(six.with_metaclass(DataAPIMetaclass, object)):
+    # __metaclass__ = DataAPIMetaclass
 
     def __init__(self, cache_client=None):
         self._client = cache_client

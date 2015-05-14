@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # framework
+import six
 from django.db import models
 from django.contrib.contenttypes.models import ContentType
 import django
@@ -15,11 +16,12 @@ from django.db.models.signals import post_syncdb
 from . import conf
 
 
+@six.python_2_unicode_compatible
 class Model(models.Model):  # Base class for db setting
     class Meta:
         abstract = True
 
-    def __unicode__(self):
+    def __str__(self):
         return u'%s' % self.value
 
 
